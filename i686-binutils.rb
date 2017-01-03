@@ -2,7 +2,7 @@
 #                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 
-class i686Binutils < Formula
+class I686Binutils < Formula
   desc "FSF Binutils for i686-elf"
   homepage "https://www.gnu.org/software/binutils/"
   url "https://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2"
