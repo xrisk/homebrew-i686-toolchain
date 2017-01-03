@@ -16,19 +16,23 @@ class I686Gcc < Formula
   depends_on "isl"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
 
-    # Remove unrecognized options if warned by configure
+	binutils = Formula.factory 'i686-elf-binutils'
+
+	ENV['PATH'] += ":#{binutils.prefix/"bin"}"
+	puts ENV['PATH']
+
     system "./configure", "--prefix=#{prefix}",
                           "--target=i686-elf",
                           "--disable-nls",
                           "--enable-languages=c,c++",
 						  "--without-headers"
-	ENV["PATH"] = "#{bin}:#{ENV["PATH"]}"
+
     system "make", "all-gcc"
 	system "make", "all-target-libgcc"
 	system "make", "install-gcc"
 	system "make", "install-target-libgcc"
+
   end
 
   test do
