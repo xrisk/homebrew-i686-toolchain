@@ -24,11 +24,12 @@ class I686Gcc < Formula
                           "--disable-nls",
                           "--enable-languages=c,c++",
 						  "--without-headers",
-    # system "cmake", ".", *std_cmake_args
+	ENV["PATH"] = "#{bin}:#{ENV["PATH"]}"
     system "make", "all-gcc"
 	system "make", "all-target-libgcc"
 	system "make", "install-gcc"
 	system "make", "install-target-libgcc"
+  end
 
   test do
     # `test do` will create, run in and delete a temporary directory.
