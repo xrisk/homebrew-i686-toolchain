@@ -23,7 +23,7 @@ class I686Gcc < Formula
                           "--target=i686-elf",
                           "--disable-nls",
                           "--enable-languages=c,c++",
-						  "--without-headers",
+						  "--without-headers"
 	ENV["PATH"] = "#{bin}:#{ENV["PATH"]}"
     system "make", "all-gcc"
 	system "make", "all-target-libgcc"
