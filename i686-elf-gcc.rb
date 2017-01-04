@@ -4,6 +4,7 @@ require 'formula'
 class I686ElfGcc < Formula
   homepage 'http://gcc.gnu.org'
   url 'ftp://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2'
+  sha256 "f06ae7f3f790fbf0f018f6d40e844451e6bc3b7bc96e128e63b09825c1f8b29f"
 
   depends_on 'gmp'
   depends_on 'libmpc'
