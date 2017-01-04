@@ -1,7 +1,7 @@
 
 require 'formula'
 
-class I686Gcc < Formula
+class I686ElfGcc < Formula
   homepage 'http://gcc.gnu.org'
   url 'ftp://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2'
 
