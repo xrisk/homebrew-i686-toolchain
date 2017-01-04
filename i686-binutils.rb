@@ -9,6 +9,7 @@ class I686Binutils < Formula
   sha256 "369737ce51587f92466041a97ab7d2358c6d9e1b6490b3940eb09fb0a9a6ac88"
 
   # depends_on "cmake" => :build
+  keg_only "Conficts with binutils for native development."
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
@@ -36,4 +37,9 @@ class I686Binutils < Formula
     # executables being tested: `system "#{bin}/program", "do", "something"`.
     system "#{bin}/i686-elf-ld"
   end
+
+  def caveats; <<-EOS.undent
+	  Please export the following to your environment:
+		LD=#{bin}/i686-elf-ld
+
 end

@@ -1,50 +1,46 @@
-# Documentation: https://github.com/Homebrew/brew/blob/master/docs/Formula-Cookbook.md
-#                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
+
+require 'formula'
 
 class I686Gcc < Formula
-  desc ""
-  homepage ""
-  url "ftp://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2"
-  sha256 "f06ae7f3f790fbf0f018f6d40e844451e6bc3b7bc96e128e63b09825c1f8b29f"
+  homepage 'http://gcc.gnu.org'
+  url 'ftp://ftp.gnu.org/gnu/gcc/gcc-6.3.0/gcc-6.3.0.tar.bz2'
 
-  # depends_on "cmake" => :build
+  depends_on 'gmp'
+  depends_on 'libmpc'
+  depends_on 'mpfr'
+  depends_on 'i686-binutils'
 
-  depends_on "gmp"
-  depends_on "libmpc"
-  depends_on "mpfr"
-  depends_on "isl"
+  keg_only "Conflicts with GCC built for native development."
 
   def install
+    binutils = Formulary.factory 'i686-binutils'
 
-	binutils = Formula.factory 'i686-elf-binutils'
 
-	ENV['PATH'] += ":#{binutils.prefix/"bin"}"
+
+    ENV['PATH'] = "#{binutils.opt_bin}:ENV['PATH']"
 	puts ENV['PATH']
 
-    system "./configure", "--prefix=#{prefix}",
-                          "--target=i686-elf",
-                          "--disable-nls",
-                          "--enable-languages=c,c++",
-						  "--without-headers"
+    mkdir 'build' do
+      system '../configure', '--disable-nls', '--target=i686-elf',
+                             "--prefix=#{prefix}",
+                             "--enable-languages=c,c++",
+                             "--without-headers",
+                             "--with-gmp=#{Formula["gmp"].opt_prefix}",
+                             "--with-mpfr=#{Formula["mpfr"].opt_prefix}",
+                             "--with-mpc=#{Formula["libmpc"].opt_prefix}"
+      system 'make all-gcc'
+      system 'make install-gcc'
+	  FileUtils.ln_sf binutils.prefix/"i686-elf", prefix/"i686-elf"
+      system 'make all-target-libgcc'
+      system 'make install-target-libgcc'
+    end
 
-    system "make", "all-gcc"
-	system "make", "all-target-libgcc"
-	system "make", "install-gcc"
-	system "make", "install-target-libgcc"
-
-  end
-
-  test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! It's enough to just replace
-    # "false" with the main program this formula installs, but it'd be nice if you
-    # were more thorough. Run the test with `brew test i686-gcc`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "#{bin}/i686-elf-gcc"
+	def caveats; <<-EOS.undent
+		Please export the following to your environment:
+		  CC=#{bin}/i686-elf-gcc
+		  RANLIB=#{bin}/i686-elf-ranlib
+		EOS
+	end
+	
   end
 end
