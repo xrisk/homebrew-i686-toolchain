@@ -8,12 +8,12 @@ class I686ElfGcc < Formula
   depends_on 'gmp'
   depends_on 'libmpc'
   depends_on 'mpfr'
-  depends_on 'i686-binutils'
+  depends_on 'i686-elf-binutils'
 
   keg_only "Conflicts with GCC built for native development."
 
   def install
-    binutils = Formulary.factory 'i686-binutils'
+    binutils = Formulary.factory 'i686-elf-binutils'
 
 
 
