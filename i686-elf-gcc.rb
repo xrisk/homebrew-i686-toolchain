@@ -17,7 +17,7 @@ class I686ElfGcc < Formula
 
 
 
-    ENV['PATH'] = "#{binutils.opt_bin}:ENV['PATH']"
+    ENV['PATH'] = "#{binutils.opt_bin}:#{ENV['PATH']}"
 	puts ENV['PATH']
 
     mkdir 'build' do
