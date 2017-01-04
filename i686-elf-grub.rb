@@ -2,10 +2,9 @@
 #                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 
-class I686Grub < Formula
+class I686ElfGrub < Formula
   desc ""
   homepage ""
-  url "ftp://ftp.gnu.org/gnu/grub/grub-2.00.tar.gz"
   sha256 "65b39a0558f8c802209c574f4d02ca263a804e8a564bc6caf1cd0fd3b3cc11e3"
 
   head "git://git.savannah.gnu.org/grub.git", :using => :git
