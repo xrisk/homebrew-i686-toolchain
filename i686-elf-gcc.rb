@@ -39,7 +39,6 @@ class I686ElfGcc < Formula
 	def caveats; <<-EOS.undent
 		Please export the following to your environment:
 		  CC=#{bin}/i686-elf-gcc
-		  RANLIB=#{bin}/i686-elf-ranlib
 		EOS
 	end
 	

@@ -29,10 +29,6 @@ class I686ElfGrub < Formula
 
 	ENV['PATH'] = "#{gcc.opt_bin}:#{binutils.opt_bin}:#{ENV['PATH']}"
 
-	system "ls"
-
-	ohai ENV
-
 	system "./autogen.sh"
 	
 	mkdir "build" do

@@ -36,7 +36,7 @@ class I686ElfBinutils < Formula
 
   def caveats; <<-EOS.undent
 	  Please export the following to your environment:
-		LD=#{bin}/i686-elf-ld
+		LD=#{opt_bin}/i686-elf-ld
 	  EOS
   end
 	  
