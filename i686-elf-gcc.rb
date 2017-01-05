@@ -35,12 +35,12 @@ class I686ElfGcc < Formula
       system 'make all-target-libgcc'
       system 'make install-target-libgcc'
     end
-
-	def caveats; <<-EOS.undent
-		Please export the following to your environment:
-		  CC=#{bin}/i686-elf-gcc
-		EOS
-	end
-	
   end
+
+  def caveats; <<-EOS.undent
+		Please export the following to your environment:
+		  CC=#{opt_bin}/i686-elf-gcc
+		EOS
+  end
+	
 end
